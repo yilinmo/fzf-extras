@@ -546,12 +546,12 @@ runcmd() {
 }
 
 # fh - repeat history
-fh() {
-  ([[ -n "$ZSH_NAME" ]] && fc -l 1 || history) \
-    | fzf +s --tac \
-    | sed -re 's/^\s*[0-9]+\s*//' \
-    | runcmd
-}
+# fh() {
+#   ([[ -n "$ZSH_NAME" ]] && fc -l 1 || history) \
+#     | fzf +s --tac \
+#     | sed -re 's/^\s*[0-9]+\s*//' \
+#     | runcmd
+# }
 
 # writecmd - utility function used to write the command in the shell
 writecmd() {
@@ -560,6 +560,14 @@ writecmd() {
 
 # fhe - repeat history edit
 fhe() {
+  ([[ -n "$ZSH_NAME" ]] && fc -l 1 || history) \
+    | fzf +s --tac \
+    | sed -re 's/^\s*[0-9]+\s*//' \
+    | writecmd
+}
+
+# fh - repeat history
+fh() {
   ([[ -n "$ZSH_NAME" ]] && fc -l 1 || history) \
     | fzf +s --tac \
     | sed -re 's/^\s*[0-9]+\s*//' \
