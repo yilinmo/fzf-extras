@@ -17,7 +17,7 @@ fi
 zdd() {
   local dir
   dir="$(
-    find "${1:-.}" -path '*/\.*' -prune -o -type d -print 2> /dev/null \
+    fd -t d --glob '*' "${1:-.}" 2> /dev/null \
       | fzf +m \
           --preview='tree -C {} | head -n $FZF_PREVIEW_LINES' \
           --preview-window='right:hidden:wrap' \
